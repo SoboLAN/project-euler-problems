@@ -46,5 +46,6 @@ public class ProjectEuler
         ProjectEuler.problemMap = new HashMap<>();
 
         problemMap.put("1", ProjectEuler1.class);
+        problemMap.put("2", ProjectEuler2.class);
     }
 }

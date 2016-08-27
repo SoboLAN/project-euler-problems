@@ -22,17 +22,17 @@ public class ProjectEuler3 extends AbstractExecutableProblem
         //the smallest possible prime factor is 2
         int factor = 2;
 
-		while (number != 1) {
-			if (number % factor == 0) {
-				while (number % factor == 0) {
-					number /= factor;
-				}
+        while (number != 1) {
+            if (number % factor == 0) {
+                while (number % factor == 0) {
+                    number /= factor;
+                }
 
-				maxfactor = factor;
-			}
+                maxfactor = factor;
+            }
 
-			factor++;
-		}
+            factor++;
+        }
 
         return maxfactor.toString();
     }

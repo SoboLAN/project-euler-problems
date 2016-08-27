@@ -14,6 +14,7 @@ public class ProjectEuler
     {
         if (args.length != 1) {
             System.out.println("Invalid number of arguments");
+            System.exit(-1);
         }
 
         ProjectEuler.fillProblemMap();
@@ -22,15 +23,16 @@ public class ProjectEuler
 
         Class problemClass = ProjectEuler.problemMap.get(problemId);
         if (problemClass == null) {
-            System.out.println("Invalid problem ID");
+            System.out.println("Invalid or not found problem ID");
+            System.exit(-2);
         }
 
         ProjectEulerExecutable executable = null;
         try {
             executable = (ProjectEulerExecutable) problemClass.newInstance();
         } catch (Exception ex) {
-            System.out.println("Invalid problem ID");
-            System.exit(-1);
+            System.out.println("There was an error while executing. Please try again");
+            System.exit(-3);
         }
 
         ProblemResult result = executable.execute();

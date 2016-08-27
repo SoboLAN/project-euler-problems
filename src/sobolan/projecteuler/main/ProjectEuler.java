@@ -4,7 +4,7 @@ import java.util.HashMap;
 import sobolan.projecteuler.problems.*;
 
 /**
- * @author SoboLAN
+ * @author Radu Murzea
  */
 public class ProjectEuler
 {
@@ -27,9 +27,9 @@ public class ProjectEuler
             System.exit(-2);
         }
 
-        ProjectEulerExecutable executable = null;
+        AbstractExecutableProblem executable = null;
         try {
-            executable = (ProjectEulerExecutable) problemClass.newInstance();
+            executable = (AbstractExecutableProblem) problemClass.newInstance();
         } catch (Exception ex) {
             System.out.println("There was an error while executing. Please try again");
             System.exit(-3);

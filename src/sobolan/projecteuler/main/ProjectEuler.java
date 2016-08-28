@@ -48,5 +48,6 @@ public class ProjectEuler
         problemMap.put("1", ProjectEuler1.class);
         problemMap.put("2", ProjectEuler2.class);
         problemMap.put("3", ProjectEuler3.class);
+        problemMap.put("4", ProjectEuler4.class);
     }
 }

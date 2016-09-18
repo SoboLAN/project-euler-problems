@@ -114,24 +114,26 @@ import java.math.BigInteger;
 public class ProjectEuler13 extends AbstractExecutableProblem
 {
     private final String FILE_PATH = "src/sobolan/projecteuler/problems/13.txt";
+    private final int NR_DIGITS = 10;
     
     @Override
     public String getResult()
     {
-		BigInteger sum = BigInteger.ZERO;
-		try (BufferedReader buff = new BufferedReader(new FileReader(this.FILE_PATH))) {
-			
-			String line;
-			while ((line = buff.readLine()) != null) {
-				sum = sum.add(new BigInteger(line));
-			}
-		}
-		catch (IOException e) {
-			System.exit(-1);
-		}
+        BigInteger sum = BigInteger.ZERO;
+        try (BufferedReader buff = new BufferedReader(new FileReader(this.FILE_PATH))) {
+            
+            String line;
+            while ((line = buff.readLine()) != null) {
+                sum = sum.add(new BigInteger(line));
+            }
+        }
+        catch (IOException e) {
+            System.err.println("There was a problem while reading and parsing the file");
+            System.exit(-10);
+        }
         
-        String result = sum.toString().substring(0, 10);
+        String result = sum.toString().substring(0, this.NR_DIGITS);
 
-		return result;
+        return result;
     }
 }

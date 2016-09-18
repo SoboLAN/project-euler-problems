@@ -9,6 +9,7 @@
 
 # Netbeans
 /nbproject
+/dist
 
 # phpStorm
 /.idea

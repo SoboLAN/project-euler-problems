@@ -67,9 +67,13 @@ public class ProjectEuler11 extends AbstractExecutableProblem
     {
         int biggestProductLines = this.calculateLines();
         int biggestProductColumns = this.calculateColumns();
-        int biggestProductDiagonal = this.calculateDiagonals();
+        int biggestProductMainDiagonal = this.calculateMainDiagonal();
+        int biggestProductSecondaryDiagonal = this.calculateSecondaryDiagonal();
 
-        int biggestProduct = Math.max(Math.max(biggestProductLines, biggestProductColumns), biggestProductDiagonal);
+        int biggestProduct = Math.max(
+            Math.max(biggestProductLines, biggestProductColumns),
+            Math.max(biggestProductMainDiagonal, biggestProductSecondaryDiagonal)
+        );
 
         return Integer.toString(biggestProduct);
     }
@@ -106,14 +110,14 @@ public class ProjectEuler11 extends AbstractExecutableProblem
         return biggestProduct;
     }
 
-    private int calculateDiagonals()
+    private int calculateMainDiagonal()
     {
         //start from bottom left corner and go up to up-right corner
         //checking diagonal going down in the "right" direction
         int biggestProduct = 0;
         for (int i = this.MAX_ROW_INDEX - 3; i >= 0; i--) {
             for (int j = 0; j <= this.MAX_COL_INDEX; j++) {
-                if (hasDiagonalNeighborsBelow(i, j, this.RIGHT)) {
+                if (this.hasDiagonalNeighborsBelow(i, j, this.RIGHT)) {
                     int product
                         = this.matrix[i][j]
                         * this.matrix[i + 1][j + 1]
@@ -127,11 +131,17 @@ public class ProjectEuler11 extends AbstractExecutableProblem
             }
         }
 
+        return biggestProduct;
+    }
+
+    private int calculateSecondaryDiagonal()
+    {
         //start from bottom right corner and go up to up-left corner
         //checking diagonal going down in the "left" direction
+        int biggestProduct = 0;
         for (int i = this.MAX_ROW_INDEX - 3; i >= 0; i--) {
             for (int j = this.MAX_COL_INDEX; j >= 3; j--) {
-                if (hasDiagonalNeighborsBelow(i, j, this.LEFT)) {
+                if (this.hasDiagonalNeighborsBelow(i, j, this.LEFT)) {
                     int product
                         = this.matrix[i][j]
                         * this.matrix[i + 1][j - 1]

@@ -36,20 +36,24 @@ import java.io.FileReader;
  */
 public class ProjectEuler18 extends AbstractExecutableProblem
 {
+    private final String FILE_PATH = "src/sobolan/projecteuler/problems/18.txt";
+
     @Override
     public String getResult()
     {
         int[][] numbers = this.readTriangleFromFile();
-        
-        //The algorithm has a complexity of O(n^2), where n is the number of rows of the triangle
-        //Starting from the top and going through every path possible is...a trap
-        //A reverse thinking fits better here, which is why we start from the bottom and go to the top
-        //To each number, we will add the biggest of the 2 numbers below
-        //This way, the top-most number will have the maximum total that we're looking for
+
+        /**
+         * The algorithm has a complexity of O(n^2), where n is the number of rows of the triangle
+         * Starting from the top and going through every path possible is...a trap
+         * A reverse thinking fits better here, which is why we start from the bottom and go to the top
+         * To each number, we will add the biggest of the 2 numbers below
+         * This way, the top-most number will have the maximum total that we're looking for
+         */
         for (int i = numbers.length - 1; i >= 1; i--) {
             int[] aboveLine = numbers[i - 1];
             int[] currentLine = numbers[i];
-            
+
             for (int j = 0; j < aboveLine.length; j++) {
                 aboveLine[j] += Math.max(currentLine[j], currentLine[j + 1]);
             }
@@ -57,20 +61,20 @@ public class ProjectEuler18 extends AbstractExecutableProblem
 
         return Integer.toString(numbers[0][0]);
     }
-    
+
     private int[][] readTriangleFromFile()
     {
         int[][] numbers = new int[15][1];
-        
-        try (BufferedReader buff = new BufferedReader(new FileReader("src/sobolan/projecteuler/problems/18.txt"))) {
+
+        try (BufferedReader buff = new BufferedReader(new FileReader(this.FILE_PATH))) {
             String line;
             int i = 0;
-            
+
             while ((line = buff.readLine ()) != null) {
                 String[] elements = line.split(" ");
-                
+
                 numbers[i] = new int[elements.length];
-                
+
                 for (int j = 0; j < elements.length; j++) {
                     numbers[i][j] = Integer.parseInt(elements[j]);
                 }
@@ -82,7 +86,7 @@ public class ProjectEuler18 extends AbstractExecutableProblem
             System.err.println("There was an error while reading and parsing the file");
             System.exit(-1);
         }
-        
+
         return numbers;
     }
 }

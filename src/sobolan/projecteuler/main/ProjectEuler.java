@@ -27,15 +27,15 @@ public class ProjectEuler
             System.exit(-2);
         }
 
-        AbstractExecutableProblem executable = null;
+        AbstractExecutableProblem executable;
+        ProblemResult result = null;
         try {
             executable = (AbstractExecutableProblem) problemClass.newInstance();
+            result = executable.execute();
         } catch (Exception ex) {
             System.out.println("There was an error while executing. Please try again");
             System.exit(-3);
         }
-
-        ProblemResult result = executable.execute();
 
         System.out.println("Result: " + result.getResult());
         System.out.println("Duration: " + result.getDuration() + " ms");

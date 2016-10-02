@@ -17,25 +17,25 @@ public class ProjectEuler2 extends AbstractExecutableProblem
     public String getResult()
     {
         int term1 = 1;
-		int term2 = 2;
+        int term2 = 2;
 
-		int totalTerms = 1;
-		int evenTerms = 0;
+        int totalTerms = 1;
+        int evenTerms = 0;
 
-		Integer sum = 0;
+        Integer sum = 0;
 
-		while (term2 < LIMIT) {
-			totalTerms++;
+        while (term2 < LIMIT) {
+            totalTerms++;
 
-			if (term2 % 2 == 0) {
-				sum += term2;
-				evenTerms++;
-			}
+            if (term2 % 2 == 0) {
+                sum += term2;
+                evenTerms++;
+            }
 
-			int ax = term2;
-			term2 += term1;
-			term1 = ax;
-		}
+            int ax = term2;
+            term2 += term1;
+            term1 = ax;
+        }
 
         return sum.toString();
     }

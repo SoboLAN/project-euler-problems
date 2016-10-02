@@ -15,10 +15,10 @@ public abstract class AbstractExecutableProblem
 
         long end = System.currentTimeMillis();
 
-        ProblemResult problemResult = new ProblemResult(result, (end - start));
+        ProblemResult problemResult = new ProblemResult(result, end - start);
 
         return problemResult;
     }
 
-    abstract String getResult();
+    abstract public String getResult();
 }

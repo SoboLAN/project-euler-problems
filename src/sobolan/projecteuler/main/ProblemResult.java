@@ -5,8 +5,8 @@ package sobolan.projecteuler.main;
  */
 public class ProblemResult
 {
-    private String result;
-    private long duration;
+    private final String result;
+    private final long duration;
 
     public ProblemResult(String result, long duration)
     {

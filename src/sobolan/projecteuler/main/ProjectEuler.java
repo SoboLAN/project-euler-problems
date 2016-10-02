@@ -13,17 +13,15 @@ public class ProjectEuler
     public static void main(String[] args)
     {
         if (args.length != 1) {
-            System.out.println("Invalid number of arguments");
+            System.err.println("Invalid number of arguments");
             System.exit(-1);
         }
 
         ProjectEuler.fillProblemMap();
 
-        String problemId = args[0];
-
-        Class problemClass = ProjectEuler.problemMap.get(problemId);
+        Class problemClass = ProjectEuler.problemMap.get(args[0]);
         if (problemClass == null) {
-            System.out.println("Invalid or not found problem ID");
+            System.err.println("Invalid or not found problem ID");
             System.exit(-2);
         }
 
@@ -33,12 +31,12 @@ public class ProjectEuler
             executable = (AbstractExecutableProblem) problemClass.newInstance();
             result = executable.execute();
         } catch (Exception ex) {
-            System.out.println("There was an error while executing. Please try again");
+            System.err.println("There was an error while executing. Please try again");
             System.exit(-3);
         }
 
-        System.out.println("Result: " + result.getResult());
-        System.out.println("Duration: " + result.getDuration() + " ms");
+        System.out.println(String.format("Result: %s", result.getResult()));
+        System.out.println(String.format("Duration: %d ms", result.getDuration()));
     }
 
     private static void fillProblemMap()

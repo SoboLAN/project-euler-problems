@@ -70,6 +70,7 @@ public class ProjectEuler
         problemMap.put("28", ProjectEuler28.class);
         problemMap.put("29", ProjectEuler29.class);
         problemMap.put("30", ProjectEuler30.class);
+        problemMap.put("32", ProjectEuler32.class);
         problemMap.put("206", ProjectEuler206.class);
     }
 }

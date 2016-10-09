@@ -77,6 +77,7 @@ public class ProjectEuler
         problemMap.put("35", ProjectEuler035.class);
         problemMap.put("36", ProjectEuler036.class);
         problemMap.put("37", ProjectEuler037.class);
+        problemMap.put("39", ProjectEuler039.class);
         problemMap.put("59", ProjectEuler059.class);
         problemMap.put("206", ProjectEuler206.class);
     }

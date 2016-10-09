@@ -81,8 +81,7 @@ public class ProjectEuler18 extends AbstractExecutableProblem
 
                 i++;
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println("There was an error while reading and parsing the file");
             System.exit(-1);
         }

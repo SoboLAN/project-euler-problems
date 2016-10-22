@@ -20,10 +20,12 @@ public class ProjectEuler041 extends AbstractExecutableProblem
          * This only leaves 7-digit pandigital numbers, which is the reason we start our count from 7654321.
          */
         for (int i = 7654321; i >= 1234567; i--) {
-            if (this.is7DigitPandigital(i)) {
-                if (this.isPrime(i)) {
-                    return Integer.toString(i);
-                }
+            /**
+             * we test pandigitality first because it's orders of magnitude faster than primality
+             * and eliminates 99% of numbers from the start
+             */
+            if (this.is7DigitPandigital(i) && this.isPrime(i)) {
+                return Integer.toString(i);
             }
         }
 
@@ -32,7 +34,7 @@ public class ProjectEuler041 extends AbstractExecutableProblem
 
     private boolean isPrime(int number)
     {
-        long squareRoot = Math.round(Math.sqrt(number));
+        int squareRoot = (int) Math.sqrt(number);
 
         for (int i = 2; i <= squareRoot; i++) {
             if (number % i == 0) {

@@ -12,27 +12,36 @@ package sobolan.projecteuler.problems;
  */
 public class ProjectEuler040 extends AbstractExecutableProblem
 {
-    private final int LIMIT = 1000 * 1000;
-
     @Override
     public String getResult()
     {
-        StringBuilder fraction = new StringBuilder();
+        int result =
+            this.d(1)
+            * this.d(10)
+            * this.d(100)
+            * this.d(1000)
+            * this.d(10000)
+            * this.d(100000)
+            * this.d(1000000);
 
-        int i = 1;
-        while (fraction.length() <= this.LIMIT) {
-            fraction.append(Integer.toString(i));
-            i++;
+        return Integer.toString(result);
+    }
+
+    private int d(int index)
+    {
+        int totalLength = 0, currentIndex = 1;
+        while(true) {
+            String currentNumberAsString = Integer.toString(currentIndex);
+            int currentLength = currentNumberAsString.length();
+
+            if (totalLength + currentLength >= index) {
+                int result = ((int) currentNumberAsString.charAt(index - totalLength - 1)) - 48;
+                return result;
+            } else {
+                totalLength += currentLength;
+            }
+
+            currentIndex++;
         }
-
-        int d1 = ((int) fraction.charAt(1 - 1)) - 48;
-        int d10 = ((int) fraction.charAt(10 - 1)) - 48;
-        int d100 = ((int) fraction.charAt(100 - 1)) - 48;
-        int d1000 = ((int) fraction.charAt(1000 - 1)) - 48;
-        int d10000 = ((int) fraction.charAt(10000 - 1)) - 48;
-        int d100000 = ((int) fraction.charAt(100000 - 1)) - 48;
-        int d1000000 = ((int) fraction.charAt(1000000 - 1)) - 48;
-
-        return Integer.toString(d1 * d10 * d100* d1000 * d10000 * d100000 * d1000000);
     }
 }

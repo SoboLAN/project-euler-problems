@@ -25,17 +25,33 @@ public class ProjectEuler046 extends AbstractExecutableProblem
                 continue;
             }
 
-            //first prime
+            /**
+             * first prime
+             */
             int prime = 2;
 
             boolean valid = false;
+
+            /**
+             * Our prime + 2 * 1^2 should not overshoot i
+             */
             while (prime + 2 <= i) {
-                for (int j = 1; i >= prime + 2 * j * j; j++) {
-                    if (i == prime + 2 * j * j) {
+                /**
+                 * We're checking to see if there exists natural number j such that prime + 2 * j^2 = i.
+                 * This means j = sqrt((i - prime) / 2), which means j^2 must be a perfect square
+                 */
+                int formulaValue = i - prime;
+                if (formulaValue % 2 == 0) {
+                    int sqrt = (int) Math.sqrt(formulaValue / 2);
+                    if (sqrt * sqrt == formulaValue / 2) {
                         valid = true;
+                        break;
                     }
                 }
 
+                /**
+                 * We go to the next prime if the current one did not satisfy our conditions
+                 */
                 prime = this.getNextPrime(prime);
             }
 
@@ -64,13 +80,17 @@ public class ProjectEuler046 extends AbstractExecutableProblem
 
     private int getNextPrime(int currentPrime)
     {
+        if (currentPrime == 2) {
+            return 3;
+        }
+
         int p = currentPrime + 2;
         while (true) {
             if (this.isPrime(p)) {
                 return p;
             }
 
-            p++;
+            p += 2;
         }
     }
 }
